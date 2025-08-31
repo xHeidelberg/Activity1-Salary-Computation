@@ -46,7 +46,7 @@ namespace Fernandez_RobynKristoffer_2F1
                     return;
                 }
                 // catch if consist of number 
-                else if (!Regex.IsMatch(nameTxt.Text, @"^[a-zA-Z]+$"))
+                else if (!Regex.IsMatch(nameTxt.Text, @"^[a-z A-Z]+$"))
                 {
                     requiredName.Text = "Special characters or numbers not allowed.";
                     requiredName.Visible = true;
