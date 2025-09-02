@@ -114,36 +114,36 @@ namespace Fernandez_RobynKristoffer_2F1
         public void Calculate()
         {
             string month = "August";
-int absentDays = int.Parse(numberTxt.Text);
-int totalDays = 25; // This is likely the number of workdays in the month
-int holidays = 2; // These days are likely non-working days
-int workingDays = totalDays - holidays;
+            int absentDays = int.Parse(numberTxt.Text);
+            int totalDays = 25; 
+            int holidays = 2;
+            int workingDays = totalDays - holidays;
 
 // --- Calculations for Job Order Employee ---
-decimal jobOrderRate = 9000m;
-decimal jobOrderDailyRate = jobOrderRate / totalDays; // Correct daily rate based on total working days in the month
-decimal absentDeductionJO = absentDays * jobOrderDailyRate;
-decimal grossSalaryJO = jobOrderRate - absentDeductionJO;
+            decimal jobOrderRate = 9000m;
+            decimal jobOrderDailyRate = jobOrderRate / totalDays; 
+            decimal absentDeductionJO = absentDays * jobOrderDailyRate;
+            decimal grossSalaryJO = jobOrderRate - absentDeductionJO;
 
 // --- Calculations for Contract of Service Employee ---
-decimal contractOfServiceRate = 18000m;
-decimal dailyRateCOS = contractOfServiceRate / totalDays; // Correct daily rate
-decimal absentDeductionCOS = absentDays * dailyRateCOS;
-decimal grossSalaryCOS = contractOfServiceRate - absentDeductionCOS;
-decimal philHealthCOS = 1458.25m;
-decimal sssCOS = 760m;
-decimal netSalaryCOS = grossSalaryCOS - (philHealthCOS + sssCOS);
+            decimal contractOfServiceRate = 18000m;
+            decimal dailyRateCOS = contractOfServiceRate / totalDays; 
+            decimal absentDeductionCOS = absentDays * dailyRateCOS;
+            decimal grossSalaryCOS = contractOfServiceRate - absentDeductionCOS;
+            decimal philHealthCOS = 1458.25m;
+            decimal sssCOS = 760m;
+            decimal netSalaryCOS = grossSalaryCOS - (philHealthCOS + sssCOS);
 
 // --- Calculations for Permanent Employee ---
-decimal permanentRate = 32000m;
-decimal dailyRatePermanent = permanentRate / totalDays; // Correct daily rate
-decimal absentDeductionPermanent = absentDays * dailyRatePermanent;
-decimal permanentGrossSalary = permanentRate - absentDeductionPermanent;
-decimal gsisPermanent = (permanentGrossSalary * 0.09M);
-decimal philHealthPermanent = (permanentGrossSalary * 0.05M) / 2;
-decimal pagIbigPermanent = 100m;
-decimal taxPermanent = 1500m;
-decimal permanentNetSalary = permanentGrossSalary - (gsisPermanent + philHealthPermanent + pagIbigPermanent + taxPermanent);
+            decimal permanentRate = 32000m;
+            decimal dailyRatePermanent = permanentRate / totalDays;
+            decimal absentDeductionPermanent = absentDays * dailyRatePermanent;
+            decimal permanentGrossSalary = permanentRate - absentDeductionPermanent;
+            decimal gsisPermanent = (permanentGrossSalary * 0.09M);
+            decimal philHealthPermanent = (permanentGrossSalary * 0.05M) / 2;
+            decimal pagIbigPermanent = 100m;
+            decimal taxPermanent = 1500m;
+            decimal permanentNetSalary = permanentGrossSalary - (gsisPermanent + philHealthPermanent + pagIbigPermanent + taxPermanent);
 
 // --- Displaying Results in MessageBox based on selected employee type ---
 if (employeeType.SelectedIndex == 0)
