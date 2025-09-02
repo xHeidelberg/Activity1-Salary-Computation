@@ -114,54 +114,53 @@ namespace Fernandez_RobynKristoffer_2F1
         public void Calculate()
         {
             string month = "August";
-            int absentDays = int.Parse(numberTxt.Text);
-            int totalDays = 25;
-            int holidays = 2;
-            int workingDays = totalDays - holidays;
+int absentDays = int.Parse(numberTxt.Text);
+int totalDays = 25; // This is likely the number of workdays in the month
+int holidays = 2; // These days are likely non-working days
+int workingDays = totalDays - holidays;
 
-            decimal jobOrderRate = 9000m;
-            decimal jobOrderDailyRate = jobOrderRate / workingDays;
-            // Formulas per Employee Type
+// --- Calculations for Job Order Employee ---
+decimal jobOrderRate = 9000m;
+decimal jobOrderDailyRate = jobOrderRate / totalDays; // Correct daily rate based on total working days in the month
+decimal absentDeductionJO = absentDays * jobOrderDailyRate;
+decimal grossSalaryJO = jobOrderRate - absentDeductionJO;
 
-            decimal dailyRateJO = (jobOrderRate / totalDays) - absentDays;
-            decimal grossSalaryJO = (jobOrderDailyRate * workingDays) - absentDays;
+// --- Calculations for Contract of Service Employee ---
+decimal contractOfServiceRate = 18000m;
+decimal dailyRateCOS = contractOfServiceRate / totalDays; // Correct daily rate
+decimal absentDeductionCOS = absentDays * dailyRateCOS;
+decimal grossSalaryCOS = contractOfServiceRate - absentDeductionCOS;
+decimal philHealthCOS = 1458.25m;
+decimal sssCOS = 760m;
+decimal netSalaryCOS = grossSalaryCOS - (philHealthCOS + sssCOS);
 
+// --- Calculations for Permanent Employee ---
+decimal permanentRate = 32000m;
+decimal dailyRatePermanent = permanentRate / totalDays; // Correct daily rate
+decimal absentDeductionPermanent = absentDays * dailyRatePermanent;
+decimal permanentGrossSalary = permanentRate - absentDeductionPermanent;
+decimal gsisPermanent = (permanentGrossSalary * 0.09M);
+decimal philHealthPermanent = (permanentGrossSalary * 0.05M) / 2;
+decimal pagIbigPermanent = 100m;
+decimal taxPermanent = 1500m;
+decimal permanentNetSalary = permanentGrossSalary - (gsisPermanent + philHealthPermanent + pagIbigPermanent + taxPermanent);
 
-            decimal contractOfServiceRate = 18000m;
-            decimal dailyRateCOS = contractOfServiceRate / workingDays;
-            decimal philHealthCOS = 1458.25m;
-            decimal sssCOS = 760m;
-            // Formulas per Employee Type
-            decimal grossSalaryCOS = (dailyRateCOS * workingDays) - absentDays;
-            decimal netSalaryCOS = grossSalaryCOS - (philHealthCOS + sssCOS);
-
-
-            decimal permanentRate = 32000m;
-            decimal gsisPermanent = (permanentRate * 0.09M);
-            decimal philHealthPermanent = (permanentRate * 0.05M) / 2;
-            decimal pagIbigPermanent = 100m;
-            decimal taxPermanent = 1500m;
-            // Formulas per Employee Type
-            decimal permanentGrossSalary = permanentRate - absentDays;
-            decimal permanentNetSalary = permanentGrossSalary - (gsisPermanent + philHealthPermanent + pagIbigPermanent + taxPermanent);
-
-
-
-            if (employeeType.SelectedIndex == 0)
-            {
-                MessageBox.Show($"Month:\t{month}\nGross Salary: {grossSalaryJO:F2} \nNet Salary: {jobOrderRate:F2}");
-
-            }
-            else if (employeeType.SelectedIndex == 1)
-            {
-
-                MessageBox.Show($"Month:\t{month}\nGross Salary: {grossSalaryCOS:F2}\nNet Salary: {netSalaryCOS:F2}");
-            }
-            else if (employeeType.SelectedIndex == 2)
-            {
-
-                MessageBox.Show($"Month:\t{month}\nGross Salary: {permanentGrossSalary:F2}\nNet Salary: {permanentNetSalary:F2}");
-            }
+// --- Displaying Results in MessageBox based on selected employee type ---
+if (employeeType.SelectedIndex == 0)
+{
+    // Display the calculated gross and net salary for Job Order
+    MessageBox.Show($"Month:\t{month}\nGross Salary: {grossSalaryJO:F2}\nNet Salary: {grossSalaryJO:F2}");
+}
+else if (employeeType.SelectedIndex == 1)
+{
+    // Display the calculated gross and net salary for Contract of Service
+    MessageBox.Show($"Month:\t{month}\nGross Salary: {grossSalaryCOS:F2}\nNet Salary: {netSalaryCOS:F2}");
+}
+else if (employeeType.SelectedIndex == 2)
+{
+    // Display the calculated gross and net salary for Permanent
+    MessageBox.Show($"Month:\t{month}\nGross Salary: {permanentGrossSalary:F2}\nNet Salary: {permanentNetSalary:F2}");
+}
         }
 
 
